@@ -1,0 +1,11 @@
+{
+  "runId": "-v1-20251227-202105",
+  "location": "Israel",
+  "timestamp": "2025-12-27T18:21:17.968Z",
+  "attemptNumber": 1,
+  "aiOutput": {
+    "text": "```json\n{\n  \"title\": \"Explore the Holy Land: A Journey Through Israel\",\n  \"intro\": \"Discover the vibrant culture, stunning landscapes, and ancient history of Israel. From bustling cities to sacred sites, this journey will leave you in awe. Get ready to explore one of the world's most fascinating countries!\",\n  \"images\": [\n    {\"url\": \"https://source.unsplash.com/1600x900/?jerusalem-sunset\"},\n    {\"url\": \"https://source.unsplash.com/1600x900/?dead-sea-beach\"},\n    {\"url\": \"https://source.unsplash.com/1600x900/?old-city-jerusalem\"}\n  ],\n  \"attractions\": [\n    {\n      \"name\": \"Western Wall\",\n      \"description\": \"One of the most sacred sites in Judaism, the Western Wall is a must-visit destination for anyone interested in history and faith. This ancient wall has witnessed countless prayers and wishes, and its significance is palpable. Take a moment to reflect and connect with the past.\",\n      \"lat\": 31.4789,\n      \"lon\": 35.2143\n    },\n    {\n      \"name\": \"Masada National Park\",\n      \"description\": \"Perched atop a cliff, Masada National Park is an ancient fortress that tells the story of Jewish resistance against the Romans. Explore the ruins, take in the breathtaking views, and learn about the significance of this site in Jewish history.\",\n      \"lat\": 31.4678,\n      \"lon\": 35.3333\n    },\n    {\n      \"name\": \"Tel Aviv Beach\",\n      \"description\": \"Israel's vibrant city by the sea, Tel Aviv is a hub of culture, nightlife, and stunning beaches. Relax on the sand, take a dip in the Mediterranean, and soak up the energetic atmosphere of this cosmopolitan city.\",\n      \"lat\": 32.0855,\n      \"lon\": 34.7712\n    }\n  ],\n  \"map\": {\n    \"centerLat\": 31.6979,\n    \"centerLon\": 35.1553,\n    \"zoom\": 12\n  }\n}\n```"
+  },
+  "decision": "approved",
+  "feedback": ""
+}
