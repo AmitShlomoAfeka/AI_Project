@@ -1,0 +1,11 @@
+{
+  "runId": "rec8YsK6aN1MJxJE9-v1-20251227-195208",
+  "location": "Israel",
+  "timestamp": "2025-12-27T17:52:27.015Z",
+  "attemptNumber": 1,
+  "aiOutput": {
+    "text": "```json\n{\n  \"title\": \"Discover Israel's Hidden Gems\",\n  \"intro\": \"Get ready to explore a land of ancient history, breathtaking landscapes, and vibrant culture. From the shores of the Mediterranean to the desert's golden dunes, Israel has something for every kind of traveler. Let's take a journey to this incredible destination!\",\n  \"images\": [\n    {\n      \"url\": \"https://source.unsplash.com/1600x900/?mountain-israel\"\n    },\n    {\n      \"url\": \"https://source.unsplash.com/1600x900/?jerusalem-israel\"\n    },\n    {\n      \"url\": \"https://source.unsplash.com/1600x900/?deadsea-israel\"\n    }\n  ],\n  \"attractions\": [\n    {\n      \"name\": \"Western Wall\",\n      \"description\": \"One of the most sacred sites in Judaism, the Western Wall is a majestic fortress wall that dates back to the 2nd Temple period. Visitors can walk alongside the wall, pray, or simply take in the historic atmosphere.\",\n      \"lat\": 31.4783,\n      \"lon\": 35.2142\n    },\n    {\n      \"name\": \"Masada National Park\",\n      \"description\": \"Perched atop a rugged plateau, Masada National Park boasts breathtaking views of the Dead Sea and the surrounding landscape. Explore the ancient fortress, learn about its rich history, and take in the stunning sunsets.\",\n      \"lat\": 31.4667,\n      \"lon\": 35.2833\n    },\n    {\n      \"name\": \"Tel Aviv Beach\",\n      \"description\": \"Tel Aviv Beach offers a vibrant and lively atmosphere, perfect for sunbathing, swimming, or simply relaxing. Enjoy the city's famous boardwalk, try some local cuisine, and soak up the sun-kissed vibes.\",\n      \"lat\": 32.0778,\n      \"lon\": 34.7744\n    }\n  ],\n  \"map\": {\n    \"centerLat\": 31.7167,\n    \"centerLon\": 35.0667,\n    \"zoom\": 12\n  }\n}\n```"
+  },
+  "decision": "approved",
+  "feedback": ""
+}
