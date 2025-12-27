@@ -1,0 +1,11 @@
+{
+  "runId": "-v1-20251227-203055",
+  "location": "Israel",
+  "timestamp": "2025-12-27T18:31:05.303Z",
+  "attemptNumber": 1,
+  "aiOutput": {
+    "text": "```json\n{\n  \"title\": \"Discover the Wonders of Israel\",\n  \"intro\": \"Get ready to explore the vibrant culture, rich history, and breathtaking landscapes of Israel. From ancient ruins to modern cities, this tiny country packs a big punch. Join us on a journey through the Holy Land.\",\n  \"images\": [\n    {\n      \"url\": \"https://source.unsplash.com/1600x900/?israel-landscape\"\n    },\n    {\n      \"url\": \"https://source.unsplash.com/1600x900/?jerusalem-old-city\"\n    },\n    {\n      \"url\": \"https://source.unsplash.com/1600x900/?dead-sea-beach\"\n    }\n  ],\n  \"attractions\": [\n    {\n      \"name\": \"Western Wall\",\n      \"description\": \"One of the holiest sites in Judaism, the Western Wall is a 2,000-year-old limestone wall that surrounds the Temple Mount. Visitors can touch the wall, leave notes, and pray alongside thousands of others. A poignant reminder of the history and spirituality of the Jewish people.\",\n      \"lat\": 31.4789,\n      \"lon\": 35.2151\n    },\n    {\n      \"name\": \"Masada National Park\",\n      \"description\": \"Perched atop a mountain plateau, Masada offers breathtaking views of the Dead Sea and the surrounding desert landscape. This ancient fortress, built by King Herod, was the site of a famous Jewish revolt against the Romans. A UNESCO World Heritage Site and a testament to the enduring spirit of the Jewish people.\",\n      \"lat\": 31.4867,\n      \"lon\": 35.3668\n    },\n    {\n      \"name\": \"Bahá'í Gardens\",\n      \"description\": \"A stunning example of Persian garden design, the Bahá'í Gardens in Haifa are a tranquil oasis in the heart of the city. With its intricate water features, beautiful flowers, and majestic views of the Mediterranean Sea, this garden is a must-visit for anyone interested in architecture, history, or simply relaxation.\",\n      \"lat\": 32.8083,\n      \"lon\": 34.9972\n    }\n  ],\n  \"map\": {\n    \"centerLat\": 31.7186,\n    \"centerLon\": 35.1932,\n    \"zoom\": 12\n  }\n}\n```"
+  },
+  "decision": "approved",
+  "feedback": ""
+}
