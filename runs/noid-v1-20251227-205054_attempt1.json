@@ -1,0 +1,11 @@
+{
+  "runId": "noid-v1-20251227-205054",
+  "location": "Israel",
+  "timestamp": "2025-12-27T18:52:15.413Z",
+  "attemptNumber": 1,
+  "aiOutput": {
+    "text": "```json\n{\n  \"title\": \"Discover the Holy Land: A Journey Through Israel\",\n  \"intro\": \"Get ready to uncover the rich history, stunning landscapes, and vibrant culture of Israel. From ancient ruins to modern cities, this incredible country has something for every traveler. Join us on a journey through the Holy Land.\",\n  \"images\": [\n    {\n      \"url\": \"https://source.unsplash.com/1600x900/?jerusalem-old-city\"\n    },\n    {\n      \"url\": \"https://source.unsplash.com/1600x900/?dead-sea-israel\"\n    },\n    {\n      \"url\": \"https://source.unsplash.com/1600x900/?tel-aviv-beach\"\n    }\n  ],\n  \"attractions\": [\n    {\n      \"name\": \"Western Wall\",\n      \"description\": \"One of the holiest sites in Judaism, the Western Wall is a remnant of the ancient Second Temple complex. Visitors can place notes with prayers in the cracks of the wall, creating a unique and moving experience.\",\n      \"lat\": 31.4784,\n      \"lon\": 35.2168\n    },\n    {\n      \"name\": \"Masada National Park\",\n      \"description\": \"Perched atop a plateau, Masada National Park offers breathtaking views of the surrounding desert and the Dead Sea. This ancient fortress was the site of a famous Jewish rebellion against the Romans.\",\n      \"lat\": 31.4494,\n      \"lon\": 35.3831\n    },\n    {\n      \"name\": \"City of David\",\n      \"description\": \"Located in the heart of Jerusalem, the City of David is an archaeological site that showcases the history of Jerusalem from the time of King David to the present day. Visitors can explore the ancient streets and buildings, gaining a deeper understanding of the city's rich heritage.\",\n      \"lat\": 31.7682,\n      \"lon\": 35.2304\n    }\n  ],\n  \"map\": {\n    \"centerLat\": 31.6314,\n    \"centerLon\": 35.2993,\n    \"zoom\": 11\n  }\n}\n```"
+  },
+  "decision": "approved",
+  "feedback": ""
+}
