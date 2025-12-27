@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Discover a new place</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="badge"><span class="dot"></span> Auto-generated travel page</div>
+      <div class="badge" id="metaBadge">Run: noid-v1-20251227-231547</div>
+    </div>
+    <section class="hero">
+      <div class="heroInner">
+        <h1 id="title">Discover a new place</h1>
+        <p class="intro" id="intro">Here are some recommended attractions and a map.</p>
+      </div>
+    </section>
+    <div class="grid">
+      <section class="card">
+        <div class="cardHeader">
+          <div>
+            <p class="cardTitle">Photos</p>
+            <p class="cardHint">At least 3 images</p>
+          </div>
+        </div>
+        <div class="cardBody">
+          <div class="gallery" id="gallery"></div>
+        </div>
+      </section>
+      <section class="card">
+        <div class="cardHeader">
+          <div>
+            <p class="cardTitle">Attractions</p>
+            <p class="cardHint">Click an item to zoom on the map</p>
+          </div>
+          <div class="pill" id="countPill">0</div>
+        </div>
+        <div class="cardBody">
+          <div class="list" id="attractionsList"></div>
+        </div>
+      </section>
+    </div>
+    <section class="card" style="margin-top:18px;">
+      <div class="cardHeader">
+        <div>
+          <p class="cardTitle">Map</p>
+          <p class="cardHint">Markers show attraction coordinates</p>
+        </div>
+      </div>
+      <div class="cardBody">
+        <div id="map"></div>
+      </div>
+    </section>
+    <div class="footer">
+      <div class="pill" id="footerLeft">Location: </div>
+      <div class="pill" id="footerRight">Leaflet + OpenStreetMap</div>
+    </div>
+  </div>
+
+  <script>
+    const pageData = {
+      title: "Discover a new place",
+      intro: "Here are some recommended attractions and a map.",
+      images: ["https://source.unsplash.com/featured/?Discover%20a%20new%20place&sig=1","https://source.unsplash.com/featured/?Discover%20a%20new%20place&sig=2","https://source.unsplash.com/featured/?Discover%20a%20new%20place&sig=3"],
+      attractions: []
+    };
+
+    function safeText(v, fallback="") {
+      return (typeof v === "string" && v.trim()) ? v.trim() : fallback;
+    }
+
+    function normalizeData(data) {
+      const title = safeText(data?.title, "Discover a new place");
+      const intro = safeText(data?.intro, "Here are some recommended attractions and a map.");
+
+      let images = Array.isArray(data?.images) ? data.images.filter(Boolean) : [];
+      while (images.length < 3) {
+        const q = encodeURIComponent(title.replace(/^Discover\s+/i, ""));
+        images.push(`https://source.unsplash.com/featured/?${q}&sig=${images.length + 1}`);
+      }
+      images = images.slice(0, 3);
+
+      const attractions = Array.isArray(data?.attractions) ? data.attractions : [];
+      const cleanedAttractions = attractions
+        .map((a) => ({
+          name: safeText(a?.name, "Attraction"),
+          description: safeText(a?.description, ""),
+          lat: Number(a?.lat),
+          lon: Number(a?.lon),
+        }))
+        .filter((a) => Number.isFinite(a.lat) && Number.isFinite(a.lon));
+
+      return { title, intro, images, attractions: cleanedAttractions };
+    }
+
+    function averageCenter(attractions) {
+      if (!attractions.length) return { lat: 0, lon: 0 };
+      const sum = attractions.reduce((acc, a) => (acc.lat += a.lat, acc.lon += a.lon, acc), { lat: 0, lon: 0 });
+      return { lat: sum.lat / attractions.length, lon: sum.lon / attractions.length };
+    }
+
+    const data = normalizeData(pageData);
+
+    document.getElementById("title").textContent = data.title;
+    document.getElementById("intro").textContent = data.intro;
+    document.getElementById("countPill").textContent = `${data.attractions.length} places`;
+    document.getElementById("footerLeft").textContent = `Images: ${data.images.length} • Attractions: ${data.attractions.length}`;
+
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = "";
+    const [img1, img2, img3] = data.images;
+
+    const galleryItems = [
+      { url: img1, cls: "imgWrap tall", caption: "Highlights" },
+      { url: img2, cls: "imgWrap", caption: "City vibes" },
+      { url: img3, cls: "imgWrap", caption: "Top views" },
+    ];
+
+    galleryItems.forEach((it) => {
+      const wrap = document.createElement("div");
+      wrap.className = it.cls;
+      wrap.innerHTML = `
+        <img src="${it.url}" alt="Location image" loading="lazy" />
+        <div class="imgCaption">${it.caption}</div>
+      `;
+      gallery.appendChild(wrap);
+    });
+
+    const list = document.getElementById("attractionsList");
+    list.innerHTML = "";
+
+    window.addEventListener("load", () => {
+      const center = averageCenter(data.attractions);
+      const startLat = Number.isFinite(center.lat) ? center.lat : 0;
+      const startLon = Number.isFinite(center.lon) ? center.lon : 0;
+
+      const map = L.map("map", { zoomControl: true }).setView([startLat, startLon], data.attractions.length ? 13 : 2);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      const bounds = [];
+
+      data.attractions.forEach((a, idx) => {
+        const marker = L.marker([a.lat, a.lon]).addTo(map);
+        marker.bindPopup(`<b>${a.name}</b><br/>${a.description || ""}`);
+        bounds.push([a.lat, a.lon]);
+
+        const item = document.createElement("div");
+        item.className = "item";
+        item.tabIndex = 0;
+        item.innerHTML = `
+          <div class="itemTop">
+            <p class="itemName">${idx + 1}. ${a.name}</p>
+            <span class="coords">${a.lat.toFixed(4)}, ${a.lon.toFixed(4)}</span>
+          </div>
+          ${a.description ? `<p class="itemDesc">${a.description}</p>` : ""}
+        `;
+
+        const focus = () => {
+          map.setView([a.lat, a.lon], 15, { animate: true });
+          marker.openPopup();
+        };
+
+        item.addEventListener("click", focus);
+        item.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); focus(); }
+        });
+
+        list.appendChild(item);
+      });
+
+      if (bounds.length >= 2) map.fitBounds(bounds, { padding: [20, 20] });
+
+      document.getElementById("metaBadge").textContent = "Rendered ✓";
+    });
+  </script>
+</body>
+</html>
+
+
+
