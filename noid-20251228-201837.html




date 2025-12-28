@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel Discovery</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+           background: #0b1220; color: white; margin: 0; padding: 20px; line-height: 1.6; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { font-size: 2.5rem; margin-bottom: 10px; color: #7aa7ff; }
+    p { font-size: 1.1rem; color: #9fb0d0; margin-bottom: 30px; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-bottom: 30px; }
+    .gallery img { width: 100%; height: 250px; object-fit: cover; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); }
+    #map { height: 450px; width: 100%; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Travel Discovery</h1>
+    <p>Explore amazing places around the world.</p>
+    <div class="gallery" id="gallery"></div>
+    <div id="map"></div>
+  </div>
+
+  <script>
+    const images = ["https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80","https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80","https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80"];
+    const attractions = [];
+
+    // טעינת תמונות
+    const gallery = document.getElementById("gallery");
+    images.forEach(imgData => {
+      const src = (typeof imgData === 'string') ? imgData : (imgData.url || imgData.src);
+      if (src) {
+        const img = document.createElement("img");
+        img.src = src;
+        gallery.appendChild(img);
+      }
+    });
+
+    // טעינת מפה
+    if (attractions.length > 0) {
+      const map = L.map('map').setView([attractions[0].lat, attractions[0].lon], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+
+      attractions.forEach(a => {
+        if (a.lat && a.lon) {
+          L.marker([a.lat, a.lon]).addTo(map).bindPopup("<b>" + a.name + "</b><br>" + (a.description || ""));
+        }
+      });
+      
+      // התאמת המפה לכל הנקודות
+      if (attractions.length > 1) {
+        const bounds = attractions.map(a => [a.lat, a.lon]);
+        map.fitBounds(bounds, { padding: [50, 50] });
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
