@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Discover a new place</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    body { font-family: sans-serif; background: #0b1220; color: #eee; padding: 20px; }
+    .container { max-width: 900px; margin: auto; }
+    #map { height: 400px; border-radius: 8px; margin-top: 20px; }
+    .gallery { display: flex; gap: 10px; margin: 20px 0; }
+    .gallery img { width: 32%; border-radius: 8px; object-fit: cover; height: 200px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Discover a new place</h1>
+    <p>Here are some recommended attractions and a map.</p>
+    <div class="gallery" id="gallery"></div>
+    <div id="map"></div>
+  </div>
+
+  <script>
+    const pageData = {
+      title: "Discover a new place",
+      intro: "Here are some recommended attractions and a map.",
+      images: ["https://source.unsplash.com/featured/?Discover%20a%20new%20place&sig=1","https://source.unsplash.com/featured/?Discover%20a%20new%20place&sig=2","https://source.unsplash.com/featured/?Discover%20a%20new%20place&sig=3"],
+      attractions: []
+    };
+
+    window.addEventListener("load", () => {
+      // Gallery logic
+      const gallery = document.getElementById("gallery");
+      pageData.images.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        gallery.appendChild(img);
+      });
+
+      // Map logic
+      if (pageData.attractions.length > 0) {
+        const map = L.map('map').setView([pageData.attractions[0].lat, pageData.attractions[0].lon], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        pageData.attractions.forEach(a => {
+          L.marker([a.lat, a.lon]).addTo(map).bindPopup(a.name);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
