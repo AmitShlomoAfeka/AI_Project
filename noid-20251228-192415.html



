@@ -1,0 +1,44 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Discover World</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    body { font-family: sans-serif; background: #0b1220; color: white; padding: 20px; }
+    #map { height: 400px; margin-top: 20px; border-radius: 15px; }
+    .gallery { display: flex; gap: 10px; }
+    .gallery img { width: 32%; border-radius: 10px; height: 200px; object-fit: cover; }
+  </style>
+</head>
+<body>
+  <h1>Discover World</h1>
+  <p>Welcome to World</p>
+  <div class="gallery" id="gallery"></div>
+  <div id="map"></div>
+
+  <script>
+    const images = ["https://source.unsplash.com/featured/?World&sig=1","https://source.unsplash.com/featured/?World&sig=2","https://source.unsplash.com/featured/?World&sig=3"];
+    const attractions = [];
+
+    const gallery = document.getElementById("gallery");
+    images.forEach(src => {
+      const img = document.createElement("img");
+      img.src = src;
+      gallery.appendChild(img);
+    });
+
+    if (attractions.length > 0) {
+      const map = L.map('map').setView([attractions[0].lat, attractions[0].lon], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+      attractions.forEach(a => L.marker([a.lat, a.lon]).addTo(map).bindPopup(a.name));
+    }
+  </script>
+</body>
+</html>
+
+
+
+
